@@ -53,6 +53,9 @@ less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 
 cout << ахахахаББ " " << это не скомпелируется
+cout << A NTGTHM Z TOT RJT-xnjk gjvtyzk << endl;
+cout << 2222 << endlk;
+
 vector <ll> adist;
 int main() {
     // freopen("contest.in","r",stdin);

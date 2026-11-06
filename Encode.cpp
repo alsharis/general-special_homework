@@ -52,43 +52,7 @@ template <typename T> using ordered_multiset = tree<T, null_type,
 less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 
-int n, m, k,a, b;
-ll g[MAX_N][MAX_N];
-bool active[MAX_N];
-pair <vector <int>, vector <ll>> deikstra(vector <int> start) {
-    vector <ll> dist(n, INF_LL);
-    vector <int> par(n, n + 1);
-    for (int i : start) {
-        dist[i] = 0;
-    }
-    int st = start[0];
-    vector <bool> blocked(n + 1, false);
-    for (int i = 0; i < n; i++) {
-        // cout << i << "@# " << endl;
-        int p = -1;
-        ll mn = INF_LL;
-        for (int j = 0; j < n; j++) {
-            if (active[j] && !blocked[j] && mn > dist[j]) {
-                mn = dist[j];
-                p = j;
-            }
-            
-        }
-        if (p == -1) break;
-        blocked[p] = true;
-        for (int j = 0; j < n; j++) {
-            if (g[j][p] != -1 && active[j] && !blocked[j] && dist[j] > mn + g[j][p]) {
-                dist[j] = mn + g[j][p];
-                if (p == st) {
-                    par[j] = j;
-                } else {
-                    par[j] = par[p];
-                }
-            }
-        }
-    }
-    return {par, dist};
-}
+cout << ахахахаББ " " << это не скомпелируется
 vector <ll> adist;
 int main() {
     // freopen("contest.in","r",stdin);

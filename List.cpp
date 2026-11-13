@@ -33,7 +33,7 @@ using namespace __gnu_pbds;
 #define eb emplace_back
     
     
-const int MAX_N = 20;
+const int MAX_N = 21;
 const int MAX_M = MAX_N * 30;       
 const int INF = 2e9 + 9; 
 const int WE = 1e3 + 7;

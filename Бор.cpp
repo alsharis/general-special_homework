@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
- 
+#include <Бор.H>
 using namespace std;
  
 typedef long double ld;
@@ -19,17 +19,13 @@ const int INF = 1e9 + 9;
  
 // mt19937 r(2329239);
  
-struct node {
-    array <node * , 26> alp;
-    bool is_terminal = false;
-    node () {
-        for (int i = 0; i < 26; i++) {
-            alp[i] = nullptr;
-        }           
-    }
-};
-node * root = nullptr;
-void add_str(string s) {
+
+node::node () {
+    for (int i = 0; i < 26; i++) {
+        this->alp[i] = nullptr;
+    }           
+}
+void Trie::add_str(string s) {
     node * pos = root;
     for (char c : s) {
         if (pos->alp[c - 'a'] == nullptr) {
@@ -39,10 +35,7 @@ void add_str(string s) {
     }
     pos -> is_terminal = true;
 }
-bool g[26][26];
-vector <int> topsort;
-bool used[26];
-void dfs(int v) {
+void Trie::dfs(int v) {
     used[v] = true;
     for (int u = 0; u < 26; u++) {
         if (!used[u] && g[v][u]) {
@@ -51,7 +44,7 @@ void dfs(int v) {
     }
     topsort.pb(v);
 }
-void calc(string s) {
+void Trie::calc(string s) {
     for (int i = 0; i < 26; i++) {
         used[i] = false;
         for (int j = 0; j < 26; j++) {
@@ -78,13 +71,7 @@ void calc(string s) {
             dfs(i);
         }
     }
-
-    // cout << "@@@" << endl;
     vector <int> ind(26);
-    // for (auto p : topsort) {
-    //     cout << p << " ";
-    // }
-    // cout << endl;
     for (int i = 0; i < 26; i++) {
         ind[topsort[i]] = i;
     }
@@ -101,3 +88,4 @@ void calc(string s) {
     }
     cout << endl;
 }
+

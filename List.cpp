@@ -18,6 +18,10 @@
 #include <LIST.H>
 
 using namespace std;
+node::node(int cc) {
+    this -> val = cc;
+    this -> next = nullptr;
+}
 bool Circul::contains(int val)  {
             node * el = head;
     do {

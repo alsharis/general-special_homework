@@ -15,7 +15,7 @@
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 #include <random>
-
+#include <stack.H>
 
 typedef long long ll; 
 typedef unsigned long long ull; 
@@ -50,42 +50,30 @@ template <typename T> using ordered_set = tree<T, null_type,
 less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 
-struct Node {
-    int value;
-    Node * nxt;
-};
-struct List {
-    Node * top;
-};
+
 int nan_value = INF;
-List * create_a_list() {
-    List * new_list = new List();
-    new_list -> top = nullptr;
-    return new_list;
+
+Node::Node(int value) {
+    this -> value = value;
+    this -> nxt = nullptr;
 }
-Node * new_cell(int value) {
-    Node * new_cell = new Node();
-    new_cell->value = value;
-    new_cell -> nxt = nullptr;
-    return new_cell;
-}
-void pushback(List* mass, int value) {
+void List::pushback(List* mass, int value) {
     Node * curr = mass -> top;
     if (curr == nullptr) {
-        mass -> top = new_cell(value);
+        mass -> top = new Node(value);
         return;
     }
     while (curr -> nxt != nullptr) {
         curr = curr -> nxt;
     }
-    curr -> nxt = new_cell(value);
+    curr -> nxt = new Node(value);
 }
-bool IsEmpty(List * mass) {
+bool List::IsEmpty(List * mass) {
     return mass -> top == nullptr;
 }
-Node * get_back(List * mass) {
+Node * List::get_back(List * mass) {
     if (IsEmpty(mass)) {
-        return new_cell(nan_value);
+        throw "Нема";
     }
     Node * curr = mass -> top;
     while (curr -> nxt != nullptr) {
@@ -93,7 +81,7 @@ Node * get_back(List * mass) {
     }
     return curr;
 }
-int get_len(List * mass) {
+int List::get_len(List * mass) {
     Node * curr = mass -> top;
     int len = 0;
     while (curr != nullptr) {
@@ -102,9 +90,9 @@ int get_len(List * mass) {
     }
     return len;
 }
-bool change_element(List * mass, int ind, int value) {
+bool List::change_element(List * mass, int ind, int value) {
     if (ind < 1 || ind > get_len(mass)) 
-        return false;
+        throw "Нема";
     Node * curr = mass -> top;
     int len = 1;
     while (len != ind) {
@@ -114,9 +102,9 @@ bool change_element(List * mass, int ind, int value) {
     curr -> value = value;
     return true;
 }
-bool delete_element(List * mass, int ind) {
+bool List::delete_element(List * mass, int ind) {
     if (ind < 1 || ind > get_len(mass)) 
-        return false;
+        throw "Нема";
     Node * curr = mass -> top;
     int len = 1;
     while (len < ind - 1) {
@@ -133,9 +121,9 @@ bool delete_element(List * mass, int ind) {
     }
     return true;
 }
-int get_value(List * mass, int ind) {
+int List::get_value(List * mass, int ind) {
     if (ind < 1 || ind > get_len(mass)) 
-        return nan_value;
+        throw "Нема";
     Node * curr = mass -> top;
     int len = 1;
     while (len < ind) {
@@ -144,13 +132,13 @@ int get_value(List * mass, int ind) {
     }
     return curr -> value;
 }
-int get_first_include (List * mass, int value) {
-    if (IsEmpty(mass)) return -1;
+int List::get_first_include (List * mass, int value) {
+    if (IsEmpty(mass)) throw "Нема";
     Node * curr = mass -> top;
     int len = 1;
     while (curr != nullptr && curr -> value != value ) {
         curr = curr -> nxt;
     }
-    if (curr == nullptr) return -1;
+    if (curr == nullptr) throw "Нема";
     return len;
 }
